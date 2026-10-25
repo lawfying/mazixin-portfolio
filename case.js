@@ -1,0 +1,18 @@
+(function(){
+var d=window.portfolio,id=new URLSearchParams(location.search).get("id"),p=d.projects[id],root=document.getElementById("case-root");
+function esc(s){return String(s||"").replace(/[&<>"']/g,function(c){return {"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]})}
+function flow(s){return '<div class="flowline">'+s.split("|").map(function(x,i){return (i?'<span class="flow-arrow">→</span>':"")+'<div class="flow-step">'+esc(x)+'</div>'}).join("")+'</div>'}
+function media(m){if(m[0]==="videolink"){var href="video.html?id="+encodeURIComponent(m[1])+"&back="+encodeURIComponent("case.html?id="+id);return '<a class="evidence-card case-video-link" href="'+href+'"><img src="'+m[2]+'" alt="'+esc(m[3])+'"><figcaption>'+esc(m[3])+'<b>播放视频 ↗</b></figcaption></a>'}if(m[0]==="longimage"){var href2="longimage.html?src="+encodeURIComponent(m[1])+"&title="+encodeURIComponent(m[2])+"&back="+encodeURIComponent("case.html?id="+id);return '<a class="evidence-card" href="'+href2+'"><img src="'+m[1]+'" alt="'+esc(m[2])+'"><figcaption>'+esc(m[2])+' <b>查看 ↗</b></figcaption></a>'}if(m[0]==="img"||m[0]==="preview")return '<figure class="evidence-card"><img data-lightbox="'+esc(m[2])+'" src="'+m[1]+'" alt="'+esc(m[2])+'"><figcaption>'+esc(m[2])+'</figcaption></figure>';if(m[0]==="video")return '<figure class="evidence-card"><video controls preload="none"><source src="'+m[1]+'" type="video/mp4"></video><figcaption>'+esc(m[2])+'</figcaption></figure>';if(m[0]==="pdf")return '<a class="evidence-card pdf-card" href="'+m[1]+'" target="_blank" rel="noopener"><span>PDF</span><span><b>'+esc(m[2])+'</b><small>查看 ↗</small></span></a>';return ""}
+if(!p){root.innerHTML='<div class="case-wrap page-hero"><a class="back-link" href="index.html">← 返回作品集</a><h1>找不到这个项目</h1></div>';return}
+var metrics=(p.metrics||[]).map(function(m){return '<article><strong>'+esc(m[0])+'</strong><small>'+esc(m[1])+'</small></article>'}).join("");
+var awards=(p.awards||[]).map(function(a){return '<span class="award-chip">'+esc(a)+'</span>'}).join("");
+var gallery=(p.media||[]).map(media).join("");
+var demos=(p.demoUrls||[]).map(function(url,i){return '<a class="button button-dark" href="'+esc(url)+'" target="_blank" rel="noopener">'+(i===0?"资助智能体在线体验":"硬云资助辅助平台")+' ↗</a>'}).join("");
+var repo=p.repoUrl?'<a class="button button-dark" href="'+esc(p.repoUrl)+'" target="_blank" rel="noopener">查看 GitHub 仓库 ↗</a>':'';
+var story=p.story||(p.star?[p.star.s,p.star.t,p.star.a,p.star.r].join(" "):p.subtitle);
+var storyHtml='<article class="case-story"><img src="'+esc(p.star&&p.star.image||"assets/vision-evaluation.webp")+'" alt="'+esc(p.star&&p.star.alt||p.title)+'"><div><p class="eyebrow">项目实践</p><p>'+esc(story)+'</p></div></article>';
+var role=/待补充|请补充/.test(p.role||"")?"":(p.role||"项目实践");
+root.innerHTML='<div class="case-wrap case-hero"><a class="back-link" href="index.html#tech">← 返回作品集</a><p class="eyebrow" style="margin-top:25px">'+esc(p.kind)+' / '+esc(p.category)+'</p><h1>'+esc(p.title)+'</h1><p class="case-summary">'+esc(p.subtitle)+'</p><div class="case-meta">'+(p.tags||[]).map(function(t){return '<span class="tag">'+esc(t)+'</span>'}).join("")+'</div><div class="case-awards">'+awards+'</div><div class="case-actions">'+repo+demos+'</div><div class="case-metrics">'+metrics+'</div><div class="case-layout"><div class="case-main">'+storyHtml+'<section class="case-evidence"><h2>演示与资料</h2><div class="evidence-grid">'+gallery+'</div></section></div><aside class="case-aside"><p class="eyebrow">项目角色</p><b>'+esc(role)+'</b><div class="tag-list">'+(p.tags||[]).map(function(t){return '<span class="tag">'+esc(t)+'</span>'}).join("")+'</div></aside></div></div>';
+window.installLightbox&&window.installLightbox();
+})();
+

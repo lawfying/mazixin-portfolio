@@ -1,0 +1,16 @@
+# Source-size originals stay local; publish the optimized or smaller playable videos.
+assets/videos/*.mp4
+!assets/videos/aid-promo-web.mp4
+!assets/videos/sign-language-web.mp4
+!assets/videos/longgang-promo-web.mp4
+!assets/videos/funding-agent-demo.mp4
+!assets/videos/funding-video-module.mp4
+!assets/videos/funding-video-output.mp4
+!assets/videos/iot-platform-demo.mp4
+!assets/videos/water-quality-demo.mp4
+!assets/videos/face-recognition-demo.mp4
+!assets/videos/pcb-defect-demo.mp4
+assets/funding-agent-demo.mp4
+CHECK_BEFORE_PUBLISH.md
+使用说明.txt
+打开作品集.bat
