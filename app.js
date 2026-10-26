@@ -41,7 +41,9 @@
       if(best!==active)setActive(best);
     });
   },{passive:true});
-  document.getElementById("gallery-grid").innerHTML=d.gallery.filter(function(x){return !x[0].includes("-deck")}).map(function(x){return '<article class="gallery-tile"><img src="'+esc(x[0])+'" alt="'+esc(x[1])+'" data-lightbox="'+esc(x[1])+'"><p>'+esc(x[1])+'</p></article>'}).join("");
+  function designClass(src){var name=src.split("/").pop().split("?")[0].replace(/\.[^.]+$/,"");return ({"iot-platform-cover":"iot","poster-district":"poster","brand-logos":"brand-logos","sign-ui-montage":"sign-ui","mascot-showcase":"mascot","mascot-views":"mascot-views"})[name]||"visual"}
+  function designTile(x){var cls="gallery-tile design-tile design-tile--"+designClass(x[0]),title=esc(x[1]),src=esc(x[0]);if(x[2]==="video:sign")return '<a class="'+cls+' is-video-link" href="video.html?id=sign&back=index.html%23design" aria-label="'+title+'，播放完整演示"><img src="'+src+'" alt="'+title+'"><span class="design-video-badge">完整演示 ↗</span><p>'+title+'</p></a>';return '<article class="'+cls+'"><img src="'+src+'" alt="'+title+'" data-lightbox="'+title+'"><p>'+title+'</p></article>'}
+  document.getElementById("gallery-grid").innerHTML=d.gallery.filter(function(x){return !x[0].includes("-deck")}).map(designTile).join("");
   document.getElementById("deck-grid").innerHTML=d.gallery.filter(function(x){return x[0].includes("-deck")}).map(function(x){return '<article class="gallery-tile"><img src="'+esc(x[0])+'" alt="'+esc(x[1])+'" data-lightbox="'+esc(x[1])+'" data-full="'+esc(x[2]||x[0])+'"><p>'+esc(x[1])+'</p></article>'}).join("");
   document.getElementById("doc-grid").innerHTML=d.docs.map(function(x){return '<a class="doc-card" href="'+esc(x[0])+'" target="_blank" rel="noopener"><b>PDF · '+esc(x[1])+'</b><small>↗</small></a>'}).join("");
   var t=document.querySelector(".menu-toggle"),n=document.querySelector(".nav-links");if(t&&n)t.addEventListener("click",function(){n.classList.toggle("open")});
