@@ -4,7 +4,7 @@
     sign:{title:"杏云同学｜AI 手语翻译 APP",description:"HarmonyOS / ETS 手语识别与语音转译 MVP。",src:"assets/videos/sign-language-web.mp4",poster:"assets/sign-language-preview.webp"},
     funding:{title:"资助政策智能体｜功能演示",description:"政策知识检索、Agent 工作流与工具调用演示。",src:"assets/videos/funding-agent-demo.mp4",poster:"assets/funding-agent-preview.webp"},
     "funding-module":{title:"资助政策智能体｜视频生成模块",description:"视频生成模块操作演示。",src:"assets/videos/funding-video-module.mp4",poster:"assets/funding-agent-preview.webp"},
-    "funding-output":{title:"资助政策智能体｜宣传视频生成",description:"助学金主题宣传视频生成作品。",src:"assets/videos/funding-video-output.mp4",poster:"assets/aid-promo-preview.webp"},
+    "funding-output":{title:"资助智能体生成视频｜助学金：助力学子梦想，彰显教育公平",description:"资助政策智能体的视频生成模块产出。",src:"assets/videos/funding-video-output.mp4",poster:"assets/funding-agent-output-cover.jpg"},
     iot:{title:"硬云物联网管理平台｜项目演示",description:"设备管理、任务配置与 Vue 管理端演示。",src:"assets/videos/iot-platform-demo.mp4?v=20261026",poster:"assets/iot-platform-preview.webp"},
     water:{title:"公园河道水质异常检测｜系统演示",description:"水质异常检测系统成果展示。",src:"assets/videos/water-quality-demo.mp4",poster:"assets/water-quality-preview.webp"},
     face:{title:"人脸情绪识别系统｜项目演示",description:"模型训练与 Web 服务演示。",src:"assets/videos/face-recognition-demo.mp4",poster:"assets/face-recognition-preview.webp"},
